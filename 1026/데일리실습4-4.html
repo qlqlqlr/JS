@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <style>
+    .done {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <input type="text" id="todoInput" placeholder="Add a new todo">
+    <button type="submit">Todo</button>
+  </form>
+  <ul id="todoList"></ul>
+
+<script>
+  const form = document.querySelector('form');
+  const todoInput = document.querySelector('#todoInput');
+  const todoList = document.querySelector('#todoList');
+
+  function addTodo (event) {
+    event.preventDefault();
+
+    // 입력 element의 value를 가져옴
+    const todoText = todoInput.value.trim();
+
+    if (todoText === '') {
+      return; // 빈 todo는 추가하지 않음
+    }
+
+    // li element를 생성하고 todo 내용을 추가
+    const li = document.createElement('li');
+    li.textContent = todoText;
+
+    // 삭제 버튼을 생성하고 li element의 자식 요소로 추가
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'X';
+    deleteButton.addEventListener('click', function () {
+      // 삭제 버튼을 클릭하면 li element를 삭제
+      li.remove();
+    });
+    li.appendChild(deleteButton);
+
+    // li element를 클릭하면 취소선 효과를 토글
+    li.addEventListener('click', function () {
+      li.classList.toggle('done');
+    });
+
+    // 생성한 li element를 ul의 자식으로 추가
+    todoList.appendChild(li);
+
+    // 입력 element 초기화
+    todoInput.value = '';
+  }
+
+  form.addEventListener('submit', addTodo);
+</script>
+</body>
+</html>

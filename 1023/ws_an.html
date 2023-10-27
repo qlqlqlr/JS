@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .study {
+            color: red;
+        }
+    </style>
+
+
+</head>
+<body>
+    <h1>오늘 할 일</h1>
+    <hr>
+    <ul class="my-study-list test">
+        <li>수업 복습 하기</li>
+        <li>실습 문제 풀기</li>
+        <li>스터디 참여하기</li>
+        <li>1일 1커밋하기</li>
+        <li id="game">게임하기</li>
+    </ul>
+
+    <script>
+        const title = document.querySelector('h1')
+        title.innerText = "오늘 공부 목록"
+        console.log(title)
+
+        const todoList = document.querySelectorAll('li')
+        console.log(todoList)
+        console.log(todoList[0])
+
+        // python None == js null
+        const itemGame = document.querySelector('#game')
+        console.log(itemGame)
+
+        const studyList = document.querySelector('ul')
+        studyList.classList.add('study')
+        studyList.classList.remove('test')
+        console.log(studyList.classList)
+
+        studyList.removeChild(itemGame)
+        // studyList.appendChild(itemGame)
+
+        studyList.classList.add('list-group')
+        // todoList[0].classList.add('list-group-item')
+        // todoList[1].classList.add('list-group-item')
+        // todoList[2].classList.add('list-group-item')
+        // todoList[3].classList.add('list-group-item')
+        // 반복문 버전
+        // for ( 시작; 반복 조건; step 별 동작 )
+        for (let i = 0; i < todoList.length; i++) {
+            todoList[i].classList.add('list-group-item')
+        }
+
+        // ul 밑의 2번째 li 태그를 선택해라
+        const second_li = studyList.querySelector('li:nth-child(2)')
+        console.log(second_li)
+        second_li.classList.add('active')
+
+        // setAttribute: 선택된 요소에 속성 추가
+        // 없다면 추가, 이미 있는 속성이라면 값만 변경
+        second_li.setAttribute("aria-current", "true")
+        second_li.setAttribute("aria-current", "false")
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
